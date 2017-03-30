@@ -1,12 +1,11 @@
 package com.cometoin;
 
 import com.jogamp.opengl.*;
-import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.awt.GLJPanel;
 
 import java.awt.*;
 
-public class Line implements GLEventListener {
+public class Polygon implements GLEventListener {
     @Override
     public void init(GLAutoDrawable glAutoDrawable) {
 
@@ -20,26 +19,19 @@ public class Line implements GLEventListener {
     @Override
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
-        gl.glBegin (GL2.GL_LINES);
 
-        //drawing the base
-        gl.glBegin (GL2.GL_LINES);
-        gl.glVertex3f(-0.50f, -0.50f, 0);
-        gl.glVertex3f(0.50f, -0.50f, 0);
-        gl.glEnd();
+        gl.glBegin(GL2.GL_POLYGON);
 
-        //drawing the right edge
-        gl.glBegin (GL2.GL_LINES);
-        gl.glVertex3f(0f, 0.50f, 0);
-        gl.glVertex3f(-0.50f, -0.50f, 0);
-        gl.glEnd();
+        gl.glVertex3f(0f,0.5f,0f);
+        gl.glVertex3f(-0.5f,0.2f,0f);
+        gl.glVertex3f(-0.5f,-0.2f,0f);
+        gl.glVertex3f(0f,-0.5f,0f);
+        gl.glVertex3f(0f,0.5f,0f);
+        gl.glVertex3f(0.5f,0.2f,0f);
+        gl.glVertex3f(0.5f,-0.2f,0f);
+        gl.glVertex3f(0f,-0.5f,0f);
 
-        //drawing the lft edge
-        gl.glBegin (GL2.GL_LINES);
-        gl.glVertex3f(0f, 0.50f, 0);
-        gl.glVertex3f(0.50f, -0.50f, 0);
         gl.glEnd();
-        gl.glFlush();
     }
 
     @Override
@@ -55,7 +47,7 @@ public class Line implements GLEventListener {
 
         // The canvas
         GLJPanel gljpanel = new GLJPanel( capabilities );
-        Line l = new Line();
+        Polygon l = new Polygon();
         gljpanel.addGLEventListener(l);
         gljpanel.setSize(400, 400);
 

@@ -1,12 +1,11 @@
 package com.cometoin;
 
 import com.jogamp.opengl.*;
-import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.awt.GLJPanel;
 
 import java.awt.*;
 
-public class Line implements GLEventListener {
+public class LineStrip implements GLEventListener {
     @Override
     public void init(GLAutoDrawable glAutoDrawable) {
 
@@ -20,26 +19,13 @@ public class Line implements GLEventListener {
     @Override
     public void display(GLAutoDrawable drawable) {
         final GL2 gl = drawable.getGL().getGL2();
-        gl.glBegin (GL2.GL_LINES);
 
-        //drawing the base
-        gl.glBegin (GL2.GL_LINES);
-        gl.glVertex3f(-0.50f, -0.50f, 0);
-        gl.glVertex3f(0.50f, -0.50f, 0);
+        gl.glBegin (GL2.GL_LINE_STRIP);
+        gl.glVertex3f(-0.50f,-0.75f, 0);
+        gl.glVertex3f(0.7f,0.5f, 0);
+        gl.glVertex3f(0.70f,-0.70f, 0);
+        gl.glVertex3f(0f,0.5f, 0);
         gl.glEnd();
-
-        //drawing the right edge
-        gl.glBegin (GL2.GL_LINES);
-        gl.glVertex3f(0f, 0.50f, 0);
-        gl.glVertex3f(-0.50f, -0.50f, 0);
-        gl.glEnd();
-
-        //drawing the lft edge
-        gl.glBegin (GL2.GL_LINES);
-        gl.glVertex3f(0f, 0.50f, 0);
-        gl.glVertex3f(0.50f, -0.50f, 0);
-        gl.glEnd();
-        gl.glFlush();
     }
 
     @Override
@@ -55,7 +41,7 @@ public class Line implements GLEventListener {
 
         // The canvas
         GLJPanel gljpanel = new GLJPanel( capabilities );
-        Line l = new Line();
+        LineStrip l = new LineStrip();
         gljpanel.addGLEventListener(l);
         gljpanel.setSize(400, 400);
 
